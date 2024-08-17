@@ -1,0 +1,8 @@
+res://MainScene/main_scene.tscn
+res://character/player.tscn
+res://Mobs/slime.tscn
+res://character/gun.tscn
+res://Objects/pine_tree.tscn
+res://character/bullet.tscn
+res://characters/slime/slime.tscn
+res://HUD/game_over.tscn

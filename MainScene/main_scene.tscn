@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://l35fe73ooyyt"]
+
+[ext_resource type="Script" path="res://MainScene/main_scene.gd" id="1_gupfq"]
+[ext_resource type="PackedScene" uid="uid://dba7o2dbb1okx" path="res://Objects/pine_tree.tscn" id="1_lqeub"]
+[ext_resource type="PackedScene" uid="uid://bywd28ctl1w1" path="res://character/player.tscn" id="1_wnfp1"]
+[ext_resource type="PackedScene" uid="uid://lcphj0ytcb7b" path="res://HUD/game_over.tscn" id="4_2g0ub"]
+[ext_resource type="Script" path="res://HUD/game_over.gd" id="5_xywmu"]
+
+[sub_resource type="Curve2D" id="Curve2D_qror0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -56, -63, 0, 0, 0, 0, 2029, -79, 0, 0, 0, 0, 2037, 1154, 0, 0, 0, 0, -56, 1160, 0, 0, 0, 0, -56, -63)
+}
+point_count = 5
+
+[node name="MainScene" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_gupfq")
+
+[node name="Player" parent="." instance=ExtResource("1_wnfp1")]
+unique_name_in_owner = true
+position = Vector2(350, 817)
+
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-350, -817)
+curve = SubResource("Curve2D_qror0")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-56, -63)
+rotation = -0.00767371
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -5
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = -26.0
+offset_top = -15.0
+offset_right = 1974.0
+offset_bottom = 1135.0
+color = Color(0.541176, 0.541176, 0.541176, 0.188235)
+
+[node name="PineTree" parent="." instance=ExtResource("1_lqeub")]
+position = Vector2(356, 544)
+
+[node name="PineTree2" parent="." instance=ExtResource("1_lqeub")]
+position = Vector2(900, 399)
+
+[node name="PineTree5" parent="." instance=ExtResource("1_lqeub")]
+position = Vector2(706, 132)
+
+[node name="PineTree3" parent="." instance=ExtResource("1_lqeub")]
+position = Vector2(902, 730)
+
+[node name="PineTree4" parent="." instance=ExtResource("1_lqeub")]
+position = Vector2(1356, 243)
+
+[node name="SlimeTimer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[node name="GameOver" parent="." instance=ExtResource("4_2g0ub")]
+visible = false
+script = ExtResource("5_xywmu")
+
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="SlimeTimer" to="." method="_on_slime_timer_timeout"]

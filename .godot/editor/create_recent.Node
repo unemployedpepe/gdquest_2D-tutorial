@@ -1,0 +1,15 @@
+Label
+ColorRect
+CanvasLayer
+Timer
+PathFollow2D
+Path2D
+ProgressBar
+CollisionShape2D
+Area2D
+VisibleOnScreenNotifier2D
+Marker2D
+CanvasGroup
+Camera2D
+CharacterBody2D
+Node2D
